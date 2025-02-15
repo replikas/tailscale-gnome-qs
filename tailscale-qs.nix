@@ -8,8 +8,8 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "replikas";
     repo = "tailscale-gnome-qs";
-    rev = "4c72bab14501b524af085d0e90af8ea8eea452ad";
-    sha256 = "sha256-nmnWJMU/BeBmwg0qdw7NsRFIEzihdL20tlsXlzsB9Ko=";
+    rev = "e618b4731fedf895ad33cbf97909ea5079e1b27a";
+    sha256 = "sha256-1IOKOPC1riWYruEZOHy17GQDY+XQ1jy6fKdpXY5RXAw=";
   };
 
   installPhase = ''
