@@ -171,13 +171,12 @@ export const Tailscale = GObject.registerClass(
 
     _process_exit_node(prefs) {
       const exit_node_id = prefs.ExitNodeID;
-      if (exit_node_id != this._exit_node) {
-        this._exit_node = exit_node_id;
-        this.notify("exit-node");
-        const exitNodePeer = this._peers.find(peer => peer.ID === exit_node_id);
-        this._exit_node_name = exitNodePeer ? exitNodePeer.DNSName.split(".")[0] : null;
-        this.notify("exit-node-name");
-      }
+
+      this._exit_node = exit_node_id;
+      this.notify("exit-node");
+      const exitNodePeer = this._peers.find(peer => peer.ID === exit_node_id);
+      this._exit_node_name = exitNodePeer ? exitNodePeer.DNSName.split(".")[0] : null;
+      this.notify("exit-node-name");
     }
 
     _process_dns(prefs) {
@@ -367,8 +366,8 @@ export const Tailscale = GObject.registerClass(
         this._process_lan(this._prefs);
         this._process_shields(this._prefs);
         this._process_ssh(this._prefs);
-        this._process_exit_node(this._prefs);
         if (this._peers) {
+          this._process_exit_node(this._prefs);
           this._process_nodes(this._prefs, this._peers);
         }
       }
