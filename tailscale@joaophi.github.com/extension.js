@@ -189,11 +189,11 @@ const TailscaleMenuToggle = GObject.registerClass(
         for (const p of obj.profiles) {
           let enabled = obj._prefs.ControlURL === p.ControlURL && obj._prefs.Config.UserProfile.ID === p.UserProfile.ID;
           if (enabled) {
-            this.title = p.NetworkProfile.DomainName;
+            this.title = p.NetworkProfile.MagicDNSName;
             this.menu.setHeader(getIcon(), this.title, this.subtitle);
           }
           const onClick = () => { tailscale.profiles = p.ID; }
-          profiles.addMenuItem(new TailscaleProfileItem(p.NetworkProfile.DomainName, "", enabled, onClick));
+          profiles.addMenuItem(new TailscaleProfileItem(p.NetworkProfile.MagicDNSName, "", enabled, onClick));
         }
       }
       tailscale.connect("notify::profiles", (obj) => update_profiles(obj));
